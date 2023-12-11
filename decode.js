@@ -3,28 +3,28 @@
 const fs = require("fs");
 
 const decode = (content) => {
-	const lines = content.split("\n");
-	const message = {};
-	let triangularNumbers = [];
+  const lines = content.split("\n");
+  const message = {};
+  let triangularNumbers = [];
 
-	lines.forEach(line => {
-		const [number, word] = line.split(" ");
-		message[number] = word;
-	});
+  lines.forEach(line => {
+    const [number, word] = line.split(" ");
+    message[number] = word;
+  });
 
-	let count = 1, accumulator = 1;
-	while (accumulator <= Math.max(...Object.keys(message).map(key => parseInt(key)))) {
-		triangularNumbers.push(accumulator);
-		count++;
-		accumulator += count;
-	}
+  let count = 1, accumulator = 1;
+  while (accumulator <= Math.max(...Object.keys(message).map(key => parseInt(key)))) {
+    triangularNumbers.push(accumulator);
+    count++;
+    accumulator += count;
+  }
 
-	const result = triangularNumbers
-		.map(number => message[number])
-		.filter(word => word)
-		.join(" ");
+  const result = triangularNumbers
+    .map(number => message[number])
+    .filter(word => word)
+    .join(" ");
 
-	return result;
+  return result;
 }
 
 try {
